@@ -23,8 +23,6 @@ return require('packer').startup(function(use)
     })
 
 
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-
     use "nvim-lua/plenary.nvim"
     use {
         "ThePrimeagen/harpoon",
@@ -56,6 +54,16 @@ return require('packer').startup(function(use)
     use('MunifTanjim/prettier.nvim')
 
     use('mattkubej/jest.nvim')
+
+    use('github/copilot.vim')
+    use {
+        'CopilotC-Nvim/CopilotChat.nvim',
+        branch = 'canary',
+        dependencies = {
+            { 'github/copilot.vim' },
+            { 'nvim-lua/plenary.nvim' },
+        },
+    }
 
     use('mfussenegger/nvim-dap')
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
