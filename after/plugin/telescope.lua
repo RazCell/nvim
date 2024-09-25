@@ -17,10 +17,9 @@ vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
 -- Find using grep in current buffer
 vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
-
+    builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 
-vim.keymap.set('n', '<leader>fg', function() 
+vim.keymap.set('n', '<leader>fg', function()
     builtin.live_grep()
 end)
