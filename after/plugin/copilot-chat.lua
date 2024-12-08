@@ -43,9 +43,6 @@ require("CopilotChat").setup({
         },
         Review = {
             prompt = '/COPILOT_REVIEW Review the selected code.',
-            callback = function(response, source)
-                -- see config.lua for implementation
-            end,
         },
         Fix = {
             prompt = '/COPILOT_GENERATE There is a problem in this code. Rewrite the code to show it with the bug fixed.',
@@ -64,11 +61,13 @@ require("CopilotChat").setup({
             selection = select.diagnostics,
         },
         Commit = {
-            prompt = 'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
+            prompt =
+            'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
             selection = select.gitdiff,
         },
         CommitStaged = {
-            prompt = 'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
+            prompt =
+            'Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.',
             selection = function(source)
                 return select.gitdiff(source, true)
             end,
@@ -77,31 +76,31 @@ require("CopilotChat").setup({
 
     -- default window options
     window = {
-        layout = 'vertical', -- 'vertical', 'horizontal', 'float', 'replace'
-        width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
-        height = 0.5, -- fractional height of parent, or absolute height in rows when > 1
+        layout = 'vertical',    -- 'vertical', 'horizontal', 'float', 'replace'
+        width = 0.5,            -- fractional width of parent, or absolute width in columns when > 1
+        height = 0.5,           -- fractional height of parent, or absolute height in rows when > 1
         -- Options below only apply to floating windows
-        relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
-        border = 'single', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
-        row = nil, -- row position of the window, default is centered
-        col = nil, -- column position of the window, default is centered
+        relative = 'editor',    -- 'editor', 'win', 'cursor', 'mouse'
+        border = 'single',      -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
+        row = nil,              -- row position of the window, default is centered
+        col = nil,              -- column position of the window, default is centered
         title = 'Copilot Chat', -- title of chat window
-        footer = nil, -- footer of chat window
-        zindex = 1, -- determines if window is on top or below other floating windows
+        footer = nil,           -- footer of chat window
+        zindex = 1,             -- determines if window is on top or below other floating windows
     },
 
     -- default mappings
     mappings = {
         complete = {
             detail = 'Use @<Tab> or /<Tab> for options.',
-            insert ='<Tab>',
+            insert = '<Tab>',
         },
         close = {
             normal = 'q',
             insert = '<C-c>'
         },
         reset = {
-            normal ='<C-l>',
+            normal = '<C-l>',
             insert = '<C-l>'
         },
         submit_prompt = {
@@ -113,22 +112,22 @@ require("CopilotChat").setup({
             insert = '<C-y>'
         },
         yank_diff = {
-            normal = 'cgy',
+            normal = 'cdy',
             register = '"',
         },
         show_diff = {
-            normal = 'cgd'
+            normal = 'cds'
         },
         show_system_prompt = {
-            normal = 'cgp'
+            normal = 'csps'
         },
         show_user_selection = {
-            normal = 'cgs'
+            normal = 'cuss'
         },
     },
 })
 -- Show help actions with telescope
-vim.keymap.set('n', '<leader>cht', 
+vim.keymap.set('n', '<leader>cht',
 function()
     copilotChatIntegrationsTelescope.pick(actions.help_actions())
 end,
@@ -138,7 +137,7 @@ end,
 )
 
 -- Show prompts actions with telescope
-vim.keymap.set('n', '<leader>cat', 
+vim.keymap.set('n', '<leader>cat',
 function()
     copilotChatIntegrationsTelescope.pick(actions.prompt_actions())
 end,
@@ -148,7 +147,7 @@ end,
 )
 
 -- Quick chat with Copilot
-vim.keymap.set({'n', 'v'}, '<leader>cqc', 
+vim.keymap.set({ 'n', 'v' }, '<leader>cqc',
 function()
     local input = vim.fn.input("Quick Chat: ")
     if input ~= "" then
