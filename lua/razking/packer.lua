@@ -60,10 +60,9 @@ return require('packer').startup(function(use)
     use('github/copilot.vim')
     use {
         'CopilotC-Nvim/CopilotChat.nvim',
-        branch = 'canary',
         dependencies = {
-            { 'github/copilot.vim' },
-            { 'nvim-lua/plenary.nvim' },
+            { 'github/copilot.vim',    branch = "main" },
+            { 'nvim-lua/plenary.nvim', branch = "master" },
         },
     }
 
